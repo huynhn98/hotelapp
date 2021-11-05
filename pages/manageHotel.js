@@ -1,12 +1,17 @@
-import Hotel from "../components/hotel"
+import Adminhotel from "../components/adminhotel"
 import { withIronSession } from "next-iron-session";
 import { useEffect, useState } from "react";
-const hotelsPage = ({user}) =>{
+import {Button, Nav} from "react-bootstrap"
+import Link from "next/link"
+
+const manageHotel = ({user}) =>{
+
+
     const [hotels, setHotels] = useState(null);
     const fetchData = async () =>{
       const res = await fetch("/api/getAllHotels");
       const data = await res.json()
-      setHotels(data.map((h) => <Hotel hotel={h}></Hotel>))
+      setHotels(data.map((h) => <Adminhotel hotel={h}></Adminhotel>))
   }
     useEffect(() => {        
         fetchData();
@@ -17,7 +22,6 @@ const hotelsPage = ({user}) =>{
 
     if(!hotels){
         return(
-          
             <div>
                 Loading...
             </div>
@@ -25,8 +29,11 @@ const hotelsPage = ({user}) =>{
     }
     
     return(
-
         <div>
+            <Link href="/addPage" passref>
+                    <Button>Add</Button>
+            </Link>
+                    <Button>View Users</Button>
             {hotels}
         </div>
     )
@@ -59,4 +66,4 @@ export const getServerSideProps = withIronSession(
       password: "9KDjQvxpVRz1D3DWvLL5t9k3hOfZPw3i"
     }
   )
-  export default hotelsPage;
+  export default manageHotel;

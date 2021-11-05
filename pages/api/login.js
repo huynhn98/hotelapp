@@ -25,7 +25,7 @@ async function handler(req, res){
 }
 
 export default withIronSession(handler, {
-    password: process.env.APPLICATION_SECRET,
+    password: "9KDjQvxpVRz1D3DWvLL5t9k3hOfZPw3i",
     cookieName: "hotel-cookie",
     cookieOptions: {
         secure: process.env.NODE_ENV === "production"

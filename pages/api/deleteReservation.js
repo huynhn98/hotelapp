@@ -3,9 +3,8 @@ import { UserDB } from "../../util/user_db";
 import { HotelDB } from "../../util/hotel_db";
 export default function handler(req, res){
 
-    //let {reservID} = req.body;
-
-    let reservID = "2296jim";
+    let {reservID} = req.body;
+console.log(reservID)
 
     let found = ReservDB.find(x => x.id === reservID)
 
